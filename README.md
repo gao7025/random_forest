@@ -115,7 +115,7 @@ np.random所用的RandomState实例; [int, RandomState instance or None, optiona
 ### **2. 网格搜索**
 
 GridSearchCV官方网址：
-*<https://scikit-*learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html#sklearn.model_selection.GridSearchCV>**
+*<https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html#sklearn.model_selection.GridSearchCV>**
 
 #### **2.1 原理解释**
 
