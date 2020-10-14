@@ -1,15 +1,16 @@
+
 # random_forest
 Use random forest to build machine learning model, and use grid search for optimization
 
-**## 机器学习-随机森林的网格调参实例**
+## 机器学习-随机森林的网格调参实例
 
-
-**### 1. 随机森林**
+=====================================================================
+### **1. 随机森林**
 
 RandomForestClassifier官方网址：
 *<https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html>*
 
-**#### 1.1 原理解释**
+#### **1.1 原理解释**
 
 从给定的训练集通过多次随机的可重复的采样得到多个 bootstrap 数据集。接着，对每个 bootstrap 数据集构造一棵决策树，构造是通过迭代的将数据点分到左右两个子集中实现的，这个分割过程是一个搜索分割函数的参数空间以寻求最大信息增量意义下最佳参数的过程。然后，在每个叶节点处通过统计训练集中达到此叶节点的分类标签的直方图经验的估计此叶节点上的类分布。这样的迭代训练过程一直执行到用户设定的最大树深度（随机森林提出者Breiman采用的是ntree=500）或者直到不能通过继续分割获取更大的信息增益为止。
 
@@ -19,7 +20,7 @@ RandomForestClassifier官方网址：
 
 *class sklearn.ensemble.RandomForestClassifier(n_estimators=100, , criterion=‘gini’, max_depth=None, min_samples_split=2, min_samples_leaf=1, min_weight_fraction_leaf=0.0, max_features=‘auto’, max_leaf_nodes=None, min_impurity_decrease=0.0, min_impurity_split=None, bootstrap=True, oob_score=False, n_jobs=None, random_state=None, verbose=0, warm_start=False, class_weight=None, ccp_alpha=0.0, max_samples=None)[source]*
 
-**#### 1.2 Parameters**
+#### **1.2 Parameters**
 
 (1)n_estimators：int, default=100
 森林中树的个数。这个属性是典型的模型表现与模型效率成反比的影响因子，即便如此，你还是应该尽可能提高这个数字，以让你的模型更准确更稳定。
@@ -82,7 +83,7 @@ np.random所用的RandomState实例; [int, RandomState instance or None, optiona
 (19)max_samples：int or float, default=None
 如果bootstrap为True，则从X抽取以训练每个基本估计量的样本数。
 
-**#### 1.3 Attributes**
+#### **1.3 Attributes**
 
 (1)base_estimator_：DecisionTreeClassifier
 子分类器用于创建拟合子分类器的集合。
@@ -111,12 +112,12 @@ np.random所用的RandomState实例; [int, RandomState instance or None, optiona
 (9)oob_decision_function_：ndarray of shape (n_samples, n_classes)
 使用训练集上的实际估计值计算的决策函数。 如果n_estimators小，则有可能在引导过程中从未遗漏任何数据点。 在这种情况下，oob_decision_function_可能包含NaN。 仅当oob_score为True时，此属性才存在。
 
-**### 2. 网格搜索**
+### **2. 网格搜索**
 
 GridSearchCV官方网址：
 *<https://scikit-*learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html#sklearn.model_selection.GridSearchCV>**
 
-**#### 2.1 原理解释**
+#### **2.1 原理解释**
 
 GridSearchCV，它存在的意义就是自动调参，只要把参数输进去，就能给出最优化的结果和参数。但是这个方法适合于小数据集，一旦数据的量级上去了，很难得出结果。这个时候就是需要动脑筋了。数据量比较大的时候可以使用一个快速调优的方法——坐标下降。它其实是一种贪心算法：拿当前对模型影响最大的参数调优，直到最优化；再拿下一个影响最大的参数调优，如此下去，直到所有的参数调整完毕。这个方法的缺点就是可能会调到局部最优而不是全局最优，但是省时间省力，巨大的优势面前，还是试一试吧，后续可以再拿bagging再优化。
 
@@ -124,7 +125,7 @@ GridSearchCV，它存在的意义就是自动调参，只要把参数输进去�
 
 *class sklearn.model_selection.GridSearchCV(estimator, param_grid, , scoring=None, n_jobs=None, iid=‘deprecated’, refit=True, cv=None, verbose=0, pre_dispatch='2n_jobs’, error_score=nan, return_train_score=False)[source]*
 
-**#### 2.2 Parameters**
+#### **2.2 Parameters**
 
 (1)estimator：estimator object.
 选择使用的分类器，并且传入除需要确定最佳的参数之外的其他参数。每一个分类器都需要一个scoring参数，或者score方法：estimator=RandomForestClassifier(min_samples_split=100,min_samples_leaf=20,max_depth=8,max_features=‘sqrt’,random_state=10),
@@ -159,7 +160,7 @@ verbose：日志冗长度，int：冗长度，0：不输出训练过程，1：�
 (11)return_train_score：bool, default=False
 如果“False”，cv_results_属性将不包括训练分数
 
-**#### 2.3 Attributes**
+#### **2.3 Attributes**
 
 (1)cv_results_ : dict of numpy (masked) ndarrays
 具有键作为列标题和值作为列的dict，可以导入到DataFrame中。注意，“params”键用于存储所有参数候选项的参数设置列表。
@@ -187,3 +188,6 @@ search.cv_results _ [‘params’] [search.best_index_]上的字典给出了最�
 
 (8)refit_time_：float
 用于在整个数据集中重新拟合最佳模型的秒数。仅当改装不为False时才存在。0.20版中的新功能。
+
+
+
