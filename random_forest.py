@@ -1,10 +1,16 @@
-# -*- coding:utf-8 -*-
+# -*- coding: utf-8 -*-
+"""
+Created on Sun Jan 22 09:27:57 2020
+
+@author: gao
+"""
+
 import numpy as np
 import pandas as pd
-from sklearn.model_selection import train_test_split,cross_val_score
+from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import GridSearchCV
-from sklearn.metrics import roc_curve,auc,roc_auc_score,confusion_matrix,accuracy_score,precision_score,recall_score,f1_score
+from sklearn.metrics import roc_auc_score
 from evaluateIndicator import evaluateIndicator
 import warnings
 warnings.filterwarnings("ignore")
